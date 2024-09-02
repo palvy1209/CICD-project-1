@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://13.233.116.84:9000/"
+        SONAR_URL = "http://13.201.122.63:9000/"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -31,9 +31,9 @@ pipeline {
     }
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "shehan404/ultimate-cicd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "vyompal366228@gmail.com/ultimate-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
+        REGISTRY_CREDENTIALS = credentials('vyom1209')
       }
       steps {
         script {
@@ -48,7 +48,7 @@ pipeline {
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "CICD-Project-1-Manifest"
-            GIT_USER_NAME = "shehan404"
+            GIT_USER_NAME = "palvy1209"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
@@ -63,8 +63,8 @@ pipeline {
                     fi
 
                     # Set the Git user configuration
-                    git config user.email "shehanon1@gmail.com"
-                    git config user.name "Shehan"
+                    git config user.email "vyom1@gmail.com"
+                    git config user.name "vyom"
 
                     # Make the required changes and commit
                     git checkout main
